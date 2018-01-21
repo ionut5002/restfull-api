@@ -1,0 +1,5 @@
+{"env":{
+    "Password":"admin",
+    "JWT_KEY": "secret"
+    }
+}
