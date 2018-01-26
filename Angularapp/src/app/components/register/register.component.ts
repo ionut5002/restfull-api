@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FlashMessagesService } from 'ngx-flash-messages';
 import { AuthService } from '../../services/auth.service';
 
 import { Router } from '@angular/router';
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
  email: String;
  username: String;
 
-  constructor(private authService: AuthService,
+  constructor(private flashMessagesService: FlashMessagesService,
+    private authService: AuthService,
     private router: Router) { }
 
   ngOnInit() {
@@ -28,10 +30,10 @@ export class RegisterComponent implements OnInit {
     }
     this.authService.registerUser(user).subscribe(message  => {
       if(user) {
-        console.log('You are now registered and can now login');
+        this.flashMessagesService.show('User Registered!',{classes:['alert', 'alert-success']});
         this.router.navigate(['/login']);
       } else {
-        console.log('Something went wrong');
+        this.flashMessagesService.show('Something is wrong!',{classes:['alert', 'alert-danger']});
         this.router.navigate(['/register']);
       }
     });
