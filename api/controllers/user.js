@@ -47,7 +47,7 @@ exports.user_signup = (req, res, next) => {
 };
 
 exports.user_login = (req, res, next) => {
-  User.find({ email: req.body.email })
+  User.find({ username: req.body.username })
     .exec()
     .then(user => {
       if (user.length < 1) {
@@ -64,7 +64,7 @@ exports.user_login = (req, res, next) => {
         if (result) {
           const token = jwt.sign(
             {
-              email: user[0].email,
+              username: user[0].username,
               userId: user[0]._id
             },
             process.env.JWT_KEY,
@@ -72,9 +72,16 @@ exports.user_login = (req, res, next) => {
               expiresIn: "1h"
             }
           );
+         
           return res.status(200).json({
             message: "Auth successful",
-            token: token
+            token: token,
+            user: user.map(user =>{
+              return{
+                  
+                  _id: user._id
+              }
+          })
           });
         }
         res.status(401).json({
@@ -131,3 +138,4 @@ exports.user_see_all = (req, res, next)=>{
       });
   });
 };
+
