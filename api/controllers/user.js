@@ -117,7 +117,8 @@ exports.user_see_all = (req, res, next)=>{
                   email: doc.email,
                   password: doc.password,
                   name: doc.name,
-                  username:doc.username
+                  username:doc.username,
+                  _id: doc._id
               }
           })
       };
