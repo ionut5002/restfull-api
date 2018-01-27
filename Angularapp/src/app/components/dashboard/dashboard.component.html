@@ -1,3 +1,16 @@
-<p>
-  {{user}}
-</p>
+<div *ngIf="user">
+  <h2 class="page-header">Hi, {{user.name}}!</h2>
+  
+  <div class="container col-md-6">
+      <h3>Dashboard</h3>
+  <ul class="list-group">
+      <li class="list-group-item">Name : {{user.name}}</li>
+      <li class="list-group-item">Email : {{user.email}}</li>
+    <li class="list-group-item">Username : {{user.username}}</li>
+    <li class="list-group-item">Password : {{user.password}}</li>
+ 
+    
+    
+  </ul>
+</div>
+</div>

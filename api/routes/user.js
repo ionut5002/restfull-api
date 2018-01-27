@@ -12,7 +12,5 @@ router.delete("/:userId",  UserController.user_delete);//checkAuth,
 
 router.get('/', UserController.user_see_all);
 
-router.get('/Dashboard',checkAuth, (req, res, next) => {
-    res.json({user: req.user});})
 
 module.exports = router;

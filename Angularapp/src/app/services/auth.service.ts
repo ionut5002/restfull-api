@@ -32,7 +32,8 @@ export class AuthService {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
-    this.user = user;
+    this.user = user[0];
+    
   }
 
   logout() {
@@ -43,4 +44,19 @@ export class AuthService {
   loggedIn() {
     return tokenNotExpired('id_token');
   }
+  getProfile() {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('users/profile', {headers: headers})
+      .map(res => res.json());
+  }
+  loadToken() {
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+    
+  }
+  
+  
 }
