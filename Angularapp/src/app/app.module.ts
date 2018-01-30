@@ -16,6 +16,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {AuthService} from '../app/services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { VideosFilterPipe } from './pipes/video-filter.pipe';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    NavbarComponent
+    NavbarComponent,
+    VideosFilterPipe
   ],
   imports: [
     BrowserModule,
