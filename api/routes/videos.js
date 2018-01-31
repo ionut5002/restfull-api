@@ -9,7 +9,7 @@ const upload = require('../controllers/multerctrl');
 
 router.get('/', VideoController.video_get_all);
 
-router.post('/',checkAuth, upload.single('videoImage'), VideoController.video_create);
+router.post('/',  VideoController.video_create); //upload.single('videoImage'),checkAuth,
 
 router.get('/:videoId',VideoController.vide_get_video);
 

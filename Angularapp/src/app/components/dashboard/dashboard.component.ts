@@ -12,17 +12,23 @@ import 'rxjs/add/operator/map';
 export class DashboardComponent implements OnInit {
   user:Object;
   data:any=[];
+  filterargs:Object;
+   
+  
+  
   private apiurl = 'http://localhost:3000/videos'
   
   constructor(private router:Router,
     private http: Http  ) {
       this.getVideos();
       this.getData();
+      this.getUserData();
+    
+      
      }
 
   ngOnInit() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    this.user = user[0];
+    
     
     
     
@@ -35,7 +41,11 @@ getVideos(){
   this.getData().subscribe(data =>{
     console.log(data);
     this.data = data;
+
   })
 }
+getUserData(){
+  const user = JSON.parse(localStorage.getItem('user'));
+    this.user = user[0];
 }
-//| videosFilter: '_id': '5a648be224572c310c760431'
+}

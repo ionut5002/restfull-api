@@ -3,7 +3,7 @@ const Video = require('../models/video');
 
 exports.video_get_all = (req, res, next)=>{
     Video.find()
-    .select('name description _id url videoImage')
+    .select('name description _id url videoImage userId')
     .exec()
     .then( docs =>{
         const response ={
@@ -14,6 +14,7 @@ exports.video_get_all = (req, res, next)=>{
                     description: doc.description,
                     _id: doc._id,
                     url: doc.url,
+                    userId:doc.userId,
                     videoImage: doc.videoImage,
                     request:{
                         type: 'GET',
@@ -39,7 +40,8 @@ exports.video_create = (req, res, next)=>{
         name: req.body.name,
         description: req.body.description,
         url: req.body.url,
-        videoImage: req.file.path
+        //videoImage: req.file.path,
+        userId: req.body.userId
     });
     video.save()
     .then(result =>{
@@ -51,7 +53,8 @@ exports.video_create = (req, res, next)=>{
                 description: result.description,
                 url: result.url,
                 _id: result._id,
-                videoImage: result.videoImage ,
+               // videoImage: result.videoImage ,
+                userId: result.userId,
                 request :{
                     type: 'GET',
                     url:'http://localhost:3000/videos/'+ result._id
@@ -80,6 +83,7 @@ exports.vide_get_video = (req, res, next)=>{
                 description: doc.description,
                 _id: doc._id,
                 url: doc.url,
+                userId: doc.userId,
                 request:{
                     type:"PATCH",
                     urltype:'http://localhost:3000/videos/'+id
