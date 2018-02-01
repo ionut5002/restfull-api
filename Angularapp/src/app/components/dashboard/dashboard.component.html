@@ -8,7 +8,7 @@
       <li class="list-group-item">Email : {{user.email}}</li>
     <li class="list-group-item">Username : {{user.username}}</li>
     <li class="list-group-item">Password : {{user.password}}</li>
-    <li class="list-group-item">ID : {{user._id}}</li>
+    <li class="list-group-item">Password : {{user._id}}</li>
  
     
     
@@ -16,8 +16,8 @@
 </div>
 </div>
 
-<div *ngIf='user'>
-  <ng-container *ngFor = "let video of data.videos | videosFilter:filterargs "> 
+<div >
+  <ng-container *ngFor = "let video of data.videos | videosFilter: 'userId': user._id "> 
     <div style="padding:20px" class="card">
       <h2>{{video.name}}</h2>
       <h3>{{video.url}}</h3>
