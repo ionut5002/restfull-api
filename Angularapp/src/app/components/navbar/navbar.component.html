@@ -21,6 +21,9 @@
         <a class="nav-link " [routerLink] = "['/dashboard']" >Dashboard</a>
       </li>
       <li class="nav-item" *ngIf="authService.loggedIn()">
+        <a class="nav-link " [routerLink] = "['/playlist']" >Playlist</a>
+      </li>
+      <li class="nav-item" *ngIf="authService.loggedIn()">
         <a class="nav-link " (click)="onLogoutClick()" href="#">Log out</a>
       </li>
     </ul>

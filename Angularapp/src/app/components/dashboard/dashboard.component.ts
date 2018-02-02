@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
+import {VideosService} from '../../services/videos.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,36 +11,27 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user:Object;
-  data:any=[];
-  userID:any;
-  private apiurl = 'http://localhost:3000/videos'
   
-  constructor(private router:Router,
-    private http: Http  ) {
-      this.getVideos();
-      this.getData();
+  user:Object;
+  
+  
+  
+  constructor(
+    private router:Router,
+    private http: Http,
+    private videosService: VideosService  ) {
+      
+      this.getUserData();
       
      
      }
 
-  ngOnInit() {
+  ngOnInit() {}
+  
+  getUserData(){
     const user = JSON.parse(localStorage.getItem('user'));
-    this.user = user[0];
-    
-    console.log(this.userID)
-    
-    
-    
+      this.user = user[0];
   }
-  getData(){
-    return this.http.get(this.apiurl)
-    .map((res:Response) => res.json())
-  }
-getVideos(){
-  this.getData().subscribe(data =>{
-    console.log(data);
-    this.data = data;
-  })
-}
+  
+
 }
