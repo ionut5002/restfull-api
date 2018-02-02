@@ -17,6 +17,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import {AuthService} from '../app/services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { VideosFilterPipe } from './pipes/video-filter.pipe';
+import { PlaylistService } from '../app/services/playlist.service';
+import { VideosService } from '../app/services/videos.service';
+import { PlaylistComponent } from './components/playlist/playlist.component';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -34,7 +37,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     DashboardComponent,
     NavbarComponent,
-    VideosFilterPipe
+    VideosFilterPipe,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,7 @@ const appRoutes: Routes = [
 
 
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthService, AuthGuard, PlaylistService, VideosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
