@@ -15,6 +15,6 @@ router.get('/:videoId',VideoController.vide_get_video);
 
 router.patch('/:videoId',checkAuth, VideoController.video_edit);
 
-router.delete('/:videoId',checkAuth, VideoController.video_delete);
+router.delete('/:videoId', VideoController.video_delete);
 
 module.exports = router;

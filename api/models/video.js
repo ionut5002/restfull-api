@@ -6,7 +6,7 @@ const videoSchema = mongoose.Schema({
     description: String,
     url: {type: String, required: true},
     videoImage: {type: String},
-    userId: {type:String, required:true}
+    playlistId: {type:String, required:true}
 })
 
 module.exports = mongoose.model('Video', videoSchema);

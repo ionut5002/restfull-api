@@ -1,10 +1,9 @@
 <div >
-  <ng-container *ngFor = "let video of data.videos | videosFilter: 'userId': user._id "> 
+  <ng-container *ngFor = "let playlist of playlist.playlists | videosFilter: 'userId': user._id "> 
     <div style="padding:20px" class="card">
-      <h2>{{video.name}}</h2>
-      <h3>{{video.url}}</h3>
-      <h4>{{video._id}}</h4>
-      <h4>{{video.userId}}</h4>
+      <h2>{{playlist.name}}</h2>
+      <h4>{{playlist._id}}</h4>
+      <h4>{{playlist.userId}}</h4>
     </div>
   </ng-container>
 </div>

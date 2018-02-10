@@ -1,11 +1,10 @@
 const mongoose =require('mongoose');
 const Playlist = require('../models/playlist');
-const Video = require('../models/video');
+const User = require('../models/user');
 
 exports.playlist_get_all = (req, res, next)=>{
     Playlist.find()
-    .select('name _id video')
-    .populate('video','name description url')
+    .select('name _id userId')
     .exec()
     .then(docs => {
         res.status(200).json({
@@ -13,7 +12,7 @@ exports.playlist_get_all = (req, res, next)=>{
                 return{
                     _id: doc._id,
                     name: doc.name,
-                    video:doc.video
+                    userId:doc.userId
                 }
             })
         });
@@ -27,17 +26,17 @@ exports.playlist_get_all = (req, res, next)=>{
 }
 
 exports.playlist_create = (req, res, next)=>{
-    Video.findById(req.body.videoId)
-    .then(video =>{
-        if(!video){
+    User.findById(req.body.userId)
+    .then(user =>{
+        if(!user){
             return res.status(404).json({
-                message:'video not found'
+                message:'user not found'
             });
         }
         const playlist = new Playlist({
         _id: mongoose.Types.ObjectId(),
         name: req.body.name,
-        video: req.body.videoId
+        userId:req.body.userId
     });
     return playlist.save()
     })
@@ -59,7 +58,6 @@ exports.playlist_create = (req, res, next)=>{
 }
 exports.playlist_get_playlist =(req, res, next)=>{
     Playlist.findById(req.params.playlistId)
-    .populate('video','name description url')
     .exec()
     .then(playlist =>{
         if(!playlist){

@@ -7,13 +7,13 @@ const checkAuth= require('../middleware/check-auth');
 const PlaylistController = require('../controllers/playlist');
 
 
-router.get('/',checkAuth, PlaylistController.playlist_get_all);
+router.get('/',/*checkAuth,*/ PlaylistController.playlist_get_all);
 
-router.post('/',checkAuth, PlaylistController.playlist_create);
+router.post('/',/*checkAuth,*/ PlaylistController.playlist_create);
 
-router.get('/:playlistId',checkAuth, PlaylistController.playlist_get_playlist);
+router.get('/:playlistId',/*checkAuth,*/ PlaylistController.playlist_get_playlist);
 
-router.delete('/:playlistId',checkAuth,PlaylistController.playlist_delete);
+router.delete('/:playlistId',/*checkAuth,*/ PlaylistController.playlist_delete);
 
 
 module.exports = router;

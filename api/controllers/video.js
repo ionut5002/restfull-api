@@ -3,7 +3,7 @@ const Video = require('../models/video');
 
 exports.video_get_all = (req, res, next)=>{
     Video.find()
-    .select('name description _id url videoImage userId')
+    .select('name description _id url videoImage playlistId')
     .exec()
     .then( docs =>{
         const response ={
@@ -14,7 +14,7 @@ exports.video_get_all = (req, res, next)=>{
                     description: doc.description,
                     _id: doc._id,
                     url: doc.url,
-                    userId:doc.userId,
+                    playlistId:doc.playlistId,
                     videoImage: doc.videoImage,
                     request:{
                         type: 'GET',
@@ -41,7 +41,7 @@ exports.video_create = (req, res, next)=>{
         description: req.body.description,
         url: req.body.url,
         //videoImage: req.file.path,
-        userId: req.body.userId
+        playlistId: req.body.playlistId
     });
     video.save()
     .then(result =>{
@@ -54,7 +54,7 @@ exports.video_create = (req, res, next)=>{
                 url: result.url,
                 _id: result._id,
                // videoImage: result.videoImage ,
-                userId: result.userId,
+                playlistId: result.playlistId,
                 request :{
                     type: 'GET',
                     url:'http://localhost:3000/videos/'+ result._id
